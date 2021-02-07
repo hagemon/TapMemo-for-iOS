@@ -74,16 +74,16 @@ class MemoViewController: UIViewController, UITextViewDelegate {
     final func getLineRange() -> UITextRange? {
         guard let range = self.textView.selectedTextRange
         else { return nil }
-        let position = range.start
-        guard let start = self.textView.tokenizer.position(from: position, toBoundary: .paragraph, inDirection: UITextDirection(rawValue: UITextStorageDirection.backward.rawValue))
-        else {
-            return nil
+        let position = range.start        
+        var start = self.textView.tokenizer.position(from: position, toBoundary: .paragraph, inDirection: UITextDirection(rawValue: UITextStorageDirection.backward.rawValue))
+        if start == nil {
+            start = self.textView.beginningOfDocument
         }
-        guard let end = self.textView.tokenizer.position(from: position, toBoundary: .paragraph, inDirection: UITextDirection(rawValue: UITextStorageDirection.forward.rawValue))
-        else {
-            return self.textView.textRange(from: start, to: self.textView.endOfDocument)
+        var end = self.textView.tokenizer.position(from: position, toBoundary: .paragraph, inDirection: UITextDirection(rawValue: UITextStorageDirection.forward.rawValue))
+        if end == nil {
+            end = self.textView.endOfDocument
         }
-        return self.textView.textRange(from: start, to: end)
+        return self.textView.textRange(from: start!, to: end!)
     }
     
     @objc func headerAction() {
