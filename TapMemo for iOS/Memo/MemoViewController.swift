@@ -16,6 +16,7 @@ class MemoViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         self.textView.text = memo.content
+        self.addToolBar()
         self.refresh()
         // Do any additional setup after loading the view.
     }
@@ -35,7 +36,7 @@ class MemoViewController: UIViewController, UITextViewDelegate {
         self.refresh()
     }
     
-    func refresh() {
+    final func refresh() {
         self.navigationItem.title = self.memo.title
         let selectedRange = self.textView.selectedRange
         for replaced in MDParser.autoOrder(content: self.textView.text) {
@@ -46,5 +47,78 @@ class MemoViewController: UIViewController, UITextViewDelegate {
         self.textView.selectedRange = selectedRange
     }
     
+    func addToolBar() {
+        guard let toolBar = UINib(nibName: "KeyboardToolBar", bundle: nil).instantiate(withOwner: self, options: nil).first as? KeyboardToolBar else { return }
+        toolBar.headerButton.action = #selector(self.headerAction)
+        toolBar.orderButton.action = #selector(self.orderAction)
+        toolBar.bulletButton.action = #selector(self.bulletAction)
+        self.textView.inputAccessoryView = toolBar
+    }
+    
+    final func appendContent(content: String) {
+        guard let start = self.findParaHeader(),
+              let range = self.textView.textRange(from: start, to: start)
+        else {
+            self.textView.text.append(content)
+            return
+        }
+        self.textView.replace(range, withText: content)
+        
+    }
+    
+    final func characterBefore(position: UITextPosition) -> String?{
+        if let newPosition = self.textView.position(from: position, offset: -1) {
+            let range = textView.textRange(from: newPosition, to: position)
+            return textView.text(in: range!)
+        }
+        return nil
+    }
+    
+    final func findParaHeader() -> UITextPosition? {
+        guard let range = self.textView.selectedTextRange
+        else { return nil }
+        let position = range.start
+        return self.textView.tokenizer.position(from: position, toBoundary: .paragraph, inDirection: UITextDirection(rawValue: UITextStorageDirection.backward.rawValue))
+    }
+    
+    final func findParaEnd() -> UITextPosition? {
+        guard let range = self.textView.selectedTextRange
+        else { return nil }
+        let position = range.start
+        return self.textView.tokenizer.position(from: position, toBoundary: .paragraph, inDirection: UITextDirection(rawValue: UITextStorageDirection.forward.rawValue))
+    }
+    
+    final func getLineRange() -> UITextRange? {
+        guard let range = self.textView.selectedTextRange
+        else { return nil }
+        let position = range.start
+        guard let start = self.textView.tokenizer.position(from: position, toBoundary: .paragraph, inDirection: UITextDirection(rawValue: UITextStorageDirection.backward.rawValue)),
+              let end = self.textView.tokenizer.position(from: position, toBoundary: .paragraph, inDirection: UITextDirection(rawValue: UITextStorageDirection.forward.rawValue))
+        else {
+            return nil
+        }
+        return self.textView.textRange(from: start, to: end)
+    }
+    
+    @objc func headerAction() {
+        guard let range = self.getLineRange(),
+              let text = self.textView.text(in: range)
+        else {return}
+        self.textView.replace(range, withText: MDParser.updateHeader(s: text))
+    }
+    
+    @objc func orderAction() {
+        guard let range = self.getLineRange(),
+              let text = self.textView.text(in: range)
+        else {return}
+        self.textView.replace(range, withText: MDParser.updateOrder(s: text))
+    }
+    
+    @objc func bulletAction() {
+        guard let range = self.getLineRange(),
+              let text = self.textView.text(in: range)
+        else {return}
+        self.textView.replace(range, withText: MDParser.updateBullet(s: text))
+    }
 
 }

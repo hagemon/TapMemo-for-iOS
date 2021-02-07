@@ -83,6 +83,35 @@ class MDParser: NSObject {
         return Rendered(attributes: attrs, attributedRanges: attrRanges)
     }
     
+    static func updateHeader(s: String) -> String {
+        let re = RE.regularExpression(validateString: s, inRegex: self.headerRegex)
+        if re.count == 0 {
+            return "# " + s
+        }
+        let level = re[0].count
+        var replaced = String(repeating: "#", count: (level + 1) % 4)
+        if replaced.count > 0 {
+            replaced += " "
+        }
+        return RE.replace(validateString: s, withContent: replaced, inRegex: self.headerRegex+"[ ]*")
+    }
+    
+    static func updateOrder(s: String) -> String {
+        let order = RE.regularExpression(validateString: s, inRegex: self.orderRegex)
+        if order.count > 0 {
+            return RE.replace(validateString: s, withContent: "", inRegex: self.orderRegex+"[ ]*")
+        }
+        return "1. "+s
+    }
+    
+    static func updateBullet(s: String) -> String {
+        let bullet = RE.regularExpression(validateString: s, inRegex: self.bulletRegex)
+        if bullet.count > 0 {
+            return RE.replace(validateString: s, withContent: "", inRegex: self.bulletRegex+"[ ]*")
+        }
+        return "- "+s
+    }
+    
     static func autoOrder(content: String) -> [Replaced] {
         var result:[Replaced] = []
         for (block, range) in RE.regularExpressionRange(validateString: content, inRegex: self.orderListBlockRegex) {
