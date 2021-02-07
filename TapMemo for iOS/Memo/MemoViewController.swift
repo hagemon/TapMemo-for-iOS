@@ -33,7 +33,9 @@ class MemoViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         self.memo.update(content: self.textView.text)
-        self.refresh()
+        if self.textView.markedTextRange == nil {
+            self.refresh()
+        }
     }
     
     final func refresh() {
@@ -54,26 +56,7 @@ class MemoViewController: UIViewController, UITextViewDelegate {
         toolBar.bulletButton.action = #selector(self.bulletAction)
         self.textView.inputAccessoryView = toolBar
     }
-    
-    final func appendContent(content: String) {
-        guard let start = self.findParaHeader(),
-              let range = self.textView.textRange(from: start, to: start)
-        else {
-            self.textView.text.append(content)
-            return
-        }
-        self.textView.replace(range, withText: content)
-        
-    }
-    
-    final func characterBefore(position: UITextPosition) -> String?{
-        if let newPosition = self.textView.position(from: position, offset: -1) {
-            let range = textView.textRange(from: newPosition, to: position)
-            return textView.text(in: range!)
-        }
-        return nil
-    }
-    
+
     final func findParaHeader() -> UITextPosition? {
         guard let range = self.textView.selectedTextRange
         else { return nil }
@@ -121,4 +104,7 @@ class MemoViewController: UIViewController, UITextViewDelegate {
         self.textView.replace(range, withText: MDParser.updateBullet(s: text))
     }
 
+    @IBAction func doneAction(_ sender: Any) {
+        self.textView.endEditing(true)
+    }
 }
