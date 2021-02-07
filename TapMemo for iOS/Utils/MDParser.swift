@@ -27,7 +27,7 @@ class MDParser: NSObject {
     static let paraRegex = "(?<=(^|\n)).*[\n]?"
     
     static func getTitle(content: String) -> String {
-        return RE.replace(validateString: content, withContent: "", inRegex: "^#{1,3} +")
+        return RE.replace(validateString: content, withContent: "", inRegex: "^#{1,3} *")
     }
     
     static func renderAll(content: String) -> NSAttributedString {
@@ -84,6 +84,7 @@ class MDParser: NSObject {
     }
     
     static func updateHeader(s: String) -> String {
+        if s == "\n" {return s+"# "}
         let re = RE.regularExpression(validateString: s, inRegex: self.headerRegex)
         if re.count == 0 {
             return "# " + s
@@ -97,6 +98,7 @@ class MDParser: NSObject {
     }
     
     static func updateOrder(s: String) -> String {
+        if s == "\n" {return s+"1. "}
         let order = RE.regularExpression(validateString: s, inRegex: self.orderRegex)
         if order.count > 0 {
             return RE.replace(validateString: s, withContent: "", inRegex: self.orderRegex+"[ ]*")
@@ -105,6 +107,7 @@ class MDParser: NSObject {
     }
     
     static func updateBullet(s: String) -> String {
+        if s == "\n" {return s+"- "}
         let bullet = RE.regularExpression(validateString: s, inRegex: self.bulletRegex)
         if bullet.count > 0 {
             return RE.replace(validateString: s, withContent: "", inRegex: self.bulletRegex+"[ ]*")

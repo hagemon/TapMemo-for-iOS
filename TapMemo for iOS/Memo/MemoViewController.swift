@@ -75,10 +75,13 @@ class MemoViewController: UIViewController, UITextViewDelegate {
         guard let range = self.textView.selectedTextRange
         else { return nil }
         let position = range.start
-        guard let start = self.textView.tokenizer.position(from: position, toBoundary: .paragraph, inDirection: UITextDirection(rawValue: UITextStorageDirection.backward.rawValue)),
-              let end = self.textView.tokenizer.position(from: position, toBoundary: .paragraph, inDirection: UITextDirection(rawValue: UITextStorageDirection.forward.rawValue))
+        guard let start = self.textView.tokenizer.position(from: position, toBoundary: .paragraph, inDirection: UITextDirection(rawValue: UITextStorageDirection.backward.rawValue))
         else {
             return nil
+        }
+        guard let end = self.textView.tokenizer.position(from: position, toBoundary: .paragraph, inDirection: UITextDirection(rawValue: UITextStorageDirection.forward.rawValue))
+        else {
+            return self.textView.textRange(from: start, to: self.textView.endOfDocument)
         }
         return self.textView.textRange(from: start, to: end)
     }
@@ -86,21 +89,27 @@ class MemoViewController: UIViewController, UITextViewDelegate {
     @objc func headerAction() {
         guard let range = self.getLineRange(),
               let text = self.textView.text(in: range)
-        else {return}
+        else {
+            return
+        }
         self.textView.replace(range, withText: MDParser.updateHeader(s: text))
     }
     
     @objc func orderAction() {
         guard let range = self.getLineRange(),
               let text = self.textView.text(in: range)
-        else {return}
+        else {
+            return
+        }
         self.textView.replace(range, withText: MDParser.updateOrder(s: text))
     }
     
     @objc func bulletAction() {
         guard let range = self.getLineRange(),
               let text = self.textView.text(in: range)
-        else {return}
+        else {
+            return
+        }
         self.textView.replace(range, withText: MDParser.updateBullet(s: text))
     }
 
