@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18121" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OjQ-7q-YFi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OjQ-7q-YFi">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18091"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="0cD-RG-zjt" detailTextLabel="BRz-UA-PTm" rowHeight="80" style="IBUITableViewCellStyleSubtitle" id="aHE-nv-cD9">
-                                <rect key="frame" x="20" y="49.5" width="374" height="80"/>
+                                <rect key="frame" x="20" y="55.5" width="374" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aHE-nv-cD9" id="2Ud-U8-pXy">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
@@ -94,7 +94,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="accounts" textLabel="U1L-2b-HbP" style="IBUITableViewCellStyleDefault" id="YTm-AD-Ka1">
-                                <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
+                                <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YTm-AD-Ka1" id="Zdg-hN-euk">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -111,7 +111,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="sync" id="EOR-v6-AHC">
-                                <rect key="frame" x="20" y="93" width="374" height="43.5"/>
+                                <rect key="frame" x="20" y="99" width="374" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EOR-v6-AHC" id="pIm-f4-SHn">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -142,7 +142,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="quit" textLabel="Glv-uv-CCC" style="IBUITableViewCellStyleDefault" id="KdW-P2-46I">
-                                <rect key="frame" x="20" y="136.5" width="374" height="43.5"/>
+                                <rect key="frame" x="20" y="142.5" width="374" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KdW-P2-46I" id="kVQ-UR-IKy">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -165,7 +165,7 @@
                             <outlet property="delegate" destination="6g7-iL-yhK" id="BFt-ew-l6E"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="gah-Cl-AvF"/>
+                    <navigationItem key="navigationItem" title="Settings" largeTitleDisplayMode="always" id="gah-Cl-AvF"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="icu-kY-VeY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -200,7 +200,7 @@
                             <constraint firstItem="ePa-1A-7q3" firstAttribute="top" secondItem="5VO-JT-Vmc" secondAttribute="top" id="uux-Zf-q2Z"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="UjL-ID-kT0">
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="always" id="UjL-ID-kT0">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="rgx-vL-DCt">
                             <connections>
                                 <action selector="doneAction:" destination="r8e-3r-rG5" id="fCG-6V-4lR"/>

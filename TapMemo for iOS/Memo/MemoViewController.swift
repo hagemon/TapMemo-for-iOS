@@ -11,13 +11,19 @@ class MemoViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var textView: MemoTextView!
     var isEdited = false
-    var memo: CoreMemo = CoreUtil.createMemo(title: "Title", content: "# Title\n", date: Date.now())
+//    var memo: CoreMemo = CoreUtil.createMemo(title: "Title", content: "# Title\n", date: Date.now())
+    var memo: CoreMemo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.textView.text = memo.content
         self.addToolBar()
+
+        if let memo = self.memo {
+            self.textView.text = memo.content
+        } else {
+            self.textView.text = "# Title\n"
+            self.navigationItem.title = "Title"
+        }
         self.refresh()
         // Do any additional setup after loading the view.
     }
@@ -36,14 +42,19 @@ class MemoViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        self.memo.update(content: self.textView.text)
+        if self.memo == nil {
+            self.memo = CoreUtil.createMemo(title: "Title", content: "# Title\n", date: Date.now())
+        }
+        self.memo!.update(content: self.textView.text)
         if self.textView.markedTextRange == nil {
             self.refresh()
         }
     }
     
     final func refresh() {
-        self.navigationItem.title = self.memo.title
+        if let memo = self.memo {
+            self.navigationItem.title = memo.title
+        }
         let selectedRange = self.textView.selectedRange
         for replaced in MDParser.autoOrder(content: self.textView.text) {
             self.textView.text.replaceSubrange(replaced.range, with: replaced.string)

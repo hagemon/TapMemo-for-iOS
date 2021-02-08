@@ -60,7 +60,7 @@ final class CoreUtil: NSObject {
             print("------")
             let result = try context.fetch(request) as! [CoreMemo]
             for data in result {
-               print(data.value(forKey: "title") as! String, data.value(forKey: "date") as! String)
+               print(data.value(forKey: "uuid") as! String, data.value(forKey: "date") as! String)
             }
             return result
             
