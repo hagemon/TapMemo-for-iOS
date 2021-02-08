@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import CoreData
 
 final class Memo: NSObject, NSCoding {
     var title: String
     var date: String
     var content: String
-    private let uuid: String
+    let uuid: String
     var changed = false {
         didSet {
             if oldValue != self.changed {
@@ -53,6 +54,13 @@ final class Memo: NSObject, NSCoding {
         coder.encode(self.date , forKey: "date")
         coder.encode(self.content, forKey: "content")
         coder.encode(self.uuid, forKey: "uuid")
+    }
+    
+    func orm(object: NSObject) {
+        object.setValue(self.title, forKey: "title")
+        object.setValue(self.content, forKey: "content")
+        object.setValue(self.uuid, forKey: "uuid")
+        object.setValue(self.date, forKey: "date")
     }
     
     func storedKey() -> String {

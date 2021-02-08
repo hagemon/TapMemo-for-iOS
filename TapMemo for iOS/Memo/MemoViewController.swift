@@ -10,7 +10,8 @@ import UIKit
 class MemoViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var textView: MemoTextView!
-    var memo: Memo = Memo(title: "Title", date: Date.now(), content: "# Title\n")
+    var isEdited = false
+    var memo: CoreMemo = CoreUtil.createMemo(title: "Title", content: "# Title\n", date: Date.now())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +23,14 @@ class MemoViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        self.isEdited = true
         self.textView.becomeFirstResponder()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        Storage.saveMemo(memo: self.memo)
+        if self.isEdited {
+            CoreUtil.save()
+        }
         self.textView.resignFirstResponder()
         NotificationCenter.default.post(name: .memosShouldUpdate, object: nil, userInfo: [:])
     }
@@ -74,7 +78,7 @@ class MemoViewController: UIViewController, UITextViewDelegate {
     final func getLineRange() -> UITextRange? {
         guard let range = self.textView.selectedTextRange
         else { return nil }
-        let position = range.start        
+        let position = range.start
         var start = self.textView.tokenizer.position(from: position, toBoundary: .paragraph, inDirection: UITextDirection(rawValue: UITextStorageDirection.backward.rawValue))
         if start == nil {
             start = self.textView.beginningOfDocument

@@ -11,13 +11,13 @@ class MemoTableViewController: UITableViewController {
     
     @IBOutlet weak var editButton: UIBarButtonItem!
     
-    var memos: [Memo] = Storage.getMemos()
+    var memos: [CoreMemo] = CoreUtil.getCoreMemos()
     
     var recentCount: Int {
         get {
             return self.memos.filter({
                 memo in
-                Date.isRecentWeek(dateString: memo.date)
+                Date.isRecentWeek(dateString: memo.date!)
             }).count
         }
     }
@@ -25,6 +25,10 @@ class MemoTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateMemos), name: .memosShouldUpdate, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
     // MARK: - Table view data source
@@ -73,7 +77,7 @@ class MemoTableViewController: UITableViewController {
             _, _, _ in
             let index = self.getMemoIndex(indexPath: indexPath)
             let memo = self.memos[index]
-            Storage.removeMemo(memo: memo)
+            CoreUtil.removeMemo(memo: memo)
             self.memos.remove(at: index)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -94,7 +98,7 @@ class MemoTableViewController: UITableViewController {
         return indexPath.section * recentCount + indexPath.row
     }
     
-    func showMemoViewController(memo: Memo) {
+    func showMemoViewController(memo: CoreMemo) {
         guard let memoViewController = storyboard?.instantiateViewController(withIdentifier: "Memo") as? MemoViewController,
               let navigationController = self.navigationController
         else {return}
@@ -103,7 +107,7 @@ class MemoTableViewController: UITableViewController {
     }
     
     @objc func updateMemos() {
-        self.memos = Storage.getMemos()
+        self.memos = CoreUtil.getCoreMemos()
         self.tableView.reloadData()
     }
     

@@ -25,6 +25,11 @@
 		3A36843825CEC44E00E15A23 /* MemoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36843725CEC44E00E15A23 /* MemoTextView.swift */; };
 		3A36843B25CEC4B700E15A23 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36843A25CEC4B700E15A23 /* MemoViewController.swift */; };
 		3A36845625CF811B00E15A23 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36845525CF811B00E15A23 /* Notifications.swift */; };
+		3A5242CF25D044BB004EC58C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5242CE25D044BB004EC58C /* CloudKit.framework */; };
+		3A5242D425D0C0EE004EC58C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5242D325D0C0EE004EC58C /* CoreData.framework */; };
+		3A5242D725D0C433004EC58C /* Memo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A5242D525D0C433004EC58C /* Memo.xcdatamodeld */; };
+		3A52430225D0D215004EC58C /* CoreUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A52430125D0D215004EC58C /* CoreUtil.swift */; };
+		3A52430525D0D440004EC58C /* CoreMemo+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A52430425D0D440004EC58C /* CoreMemo+Extensions.swift */; };
 		3A5BDBAC25CF8D0000A4AAD1 /* KeyboardToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5BDBAB25CF8D0000A4AAD1 /* KeyboardToolBar.swift */; };
 		3A5BDBB425CF913400A4AAD1 /* KeyboardToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5BDBB325CF913400A4AAD1 /* KeyboardToolBar.xib */; };
 /* End PBXBuildFile section */
@@ -50,6 +55,12 @@
 		3A36843725CEC44E00E15A23 /* MemoTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTextView.swift; sourceTree = "<group>"; };
 		3A36843A25CEC4B700E15A23 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		3A36845525CF811B00E15A23 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		3A5242CA25D043DF004EC58C /* TapMemo for iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TapMemo for iOS.entitlements"; sourceTree = "<group>"; };
+		3A5242CE25D044BB004EC58C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		3A5242D325D0C0EE004EC58C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3A5242D625D0C433004EC58C /* Memo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memo.xcdatamodel; sourceTree = "<group>"; };
+		3A52430125D0D215004EC58C /* CoreUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreUtil.swift; sourceTree = "<group>"; };
+		3A52430425D0D440004EC58C /* CoreMemo+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreMemo+Extensions.swift"; sourceTree = "<group>"; };
 		3A5BDBAB25CF8D0000A4AAD1 /* KeyboardToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardToolBar.swift; sourceTree = "<group>"; };
 		3A5BDBB325CF913400A4AAD1 /* KeyboardToolBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyboardToolBar.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A5242D425D0C0EE004EC58C /* CoreData.framework in Frameworks */,
+				3A5242CF25D044BB004EC58C /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,8 +81,10 @@
 		3A3683F025CE818800E15A23 = {
 			isa = PBXGroup;
 			children = (
+				3A5242D525D0C433004EC58C /* Memo.xcdatamodeld */,
 				3A3683FB25CE818800E15A23 /* TapMemo for iOS */,
 				3A3683FA25CE818800E15A23 /* Products */,
+				3A5242CD25D044BB004EC58C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,6 +99,7 @@
 		3A3683FB25CE818800E15A23 /* TapMemo for iOS */ = {
 			isa = PBXGroup;
 			children = (
+				3A5242CA25D043DF004EC58C /* TapMemo for iOS.entitlements */,
 				3A36842125CE8D8C00E15A23 /* Utils */,
 				3A36841C25CE850700E15A23 /* Model */,
 				3A36841225CE84CA00E15A23 /* Memo */,
@@ -115,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				3A36841D25CE851800E15A23 /* Memo.swift */,
+				3A52430425D0D440004EC58C /* CoreMemo+Extensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -128,6 +145,7 @@
 				3A36842825CE8DF400E15A23 /* RE.swift */,
 				3A36842E25CEA58800E15A23 /* Storage.swift */,
 				3A36845525CF811B00E15A23 /* Notifications.swift */,
+				3A52430125D0D215004EC58C /* CoreUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -138,6 +156,15 @@
 				3A36843325CEBE2200E15A23 /* SettingsTableViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		3A5242CD25D044BB004EC58C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A5242D325D0C0EE004EC58C /* CoreData.framework */,
+				3A5242CE25D044BB004EC58C /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		3A5BDBAA25CF8CE000A4AAD1 /* Keyboard */ = {
@@ -223,17 +250,20 @@
 				3A36845625CF811B00E15A23 /* Notifications.swift in Sources */,
 				3A36841E25CE851800E15A23 /* Memo.swift in Sources */,
 				3A36843425CEBE2200E15A23 /* SettingsTableViewController.swift in Sources */,
+				3A52430525D0D440004EC58C /* CoreMemo+Extensions.swift in Sources */,
 				3A36843B25CEC4B700E15A23 /* MemoViewController.swift in Sources */,
 				3A5BDBAC25CF8D0000A4AAD1 /* KeyboardToolBar.swift in Sources */,
 				3A36841A25CE850000E15A23 /* MemoViewModel.swift in Sources */,
 				3A36841725CE84F100E15A23 /* MemoTableView.swift in Sources */,
 				3A36842325CE8D9F00E15A23 /* Date+Extensions.swift in Sources */,
+				3A52430225D0D215004EC58C /* CoreUtil.swift in Sources */,
 				3A36842A25CE8DF500E15A23 /* MDParser.swift in Sources */,
 				3A36842F25CEA58800E15A23 /* Storage.swift in Sources */,
 				3A36843825CEC44E00E15A23 /* MemoTextView.swift in Sources */,
 				3A36841425CE84DC00E15A23 /* MemoTableViewController.swift in Sources */,
 				3A3683FD25CE818800E15A23 /* AppDelegate.swift in Sources */,
 				3A36842B25CE8DF500E15A23 /* RE.swift in Sources */,
+				3A5242D725D0C433004EC58C /* Memo.xcdatamodeld in Sources */,
 				3A3683FF25CE818800E15A23 /* SceneDelegate.swift in Sources */,
 				3A36842C25CE8DF500E15A23 /* Enums.swift in Sources */,
 			);
@@ -382,14 +412,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "TapMemo for iOS/TapMemo for iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LD6682LBQK;
+				DEVELOPMENT_TEAM = MEWHFZ92DY;
 				INFOPLIST_FILE = "TapMemo for iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "hagemon.TapMemo-for-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "hagemon.TapMemo-mobile";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -401,14 +432,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "TapMemo for iOS/TapMemo for iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LD6682LBQK;
+				DEVELOPMENT_TEAM = MEWHFZ92DY;
 				INFOPLIST_FILE = "TapMemo for iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "hagemon.TapMemo-for-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "hagemon.TapMemo-mobile";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -437,6 +469,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3A5242D525D0C433004EC58C /* Memo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3A5242D625D0C433004EC58C /* Memo.xcdatamodel */,
+			);
+			currentVersion = 3A5242D625D0C433004EC58C /* Memo.xcdatamodel */;
+			path = Memo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3A3683F125CE818800E15A23 /* Project object */;
 }

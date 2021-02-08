@@ -9,7 +9,6 @@ import UIKit
 
 final class Storage: NSObject {
     
-    
     static func saveMemo(memo: Memo) {
         let key = memo.storedKey()
         do {
@@ -20,6 +19,7 @@ final class Storage: NSObject {
             print(error)
             return
         }
+        CoreUtil.saveCoreMemo(memo: memo)
     }
     
     static func removeMemo(memo: Memo) {
