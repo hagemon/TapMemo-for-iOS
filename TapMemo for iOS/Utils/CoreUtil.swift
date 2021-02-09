@@ -49,6 +49,7 @@ final class CoreUtil: NSObject {
             try self.context.save()
         } catch {
             print("Delete \(memo.title ?? "nil") failed")
+            print(error)
         }
     }
     

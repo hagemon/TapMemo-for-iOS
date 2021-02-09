@@ -30,26 +30,9 @@
 		3A5242D725D0C433004EC58C /* Memo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A5242D525D0C433004EC58C /* Memo.xcdatamodeld */; };
 		3A52430225D0D215004EC58C /* CoreUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A52430125D0D215004EC58C /* CoreUtil.swift */; };
 		3A52430525D0D440004EC58C /* CoreMemo+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A52430425D0D440004EC58C /* CoreMemo+Extensions.swift */; };
-		3A52433825D1894A004EC58C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A52433725D1894A004EC58C /* WidgetKit.framework */; };
-		3A52433A25D1894A004EC58C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A52433925D1894A004EC58C /* SwiftUI.framework */; };
-		3A52433D25D1894A004EC58C /* TapMemoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A52433C25D1894A004EC58C /* TapMemoWidget.swift */; };
-		3A52434025D1894D004EC58C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A52433F25D1894D004EC58C /* Assets.xcassets */; };
-		3A52434225D1894D004EC58C /* TapMemoWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3A52433E25D1894A004EC58C /* TapMemoWidget.intentdefinition */; };
-		3A52434325D1894E004EC58C /* TapMemoWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3A52433E25D1894A004EC58C /* TapMemoWidget.intentdefinition */; };
-		3A52434625D1894E004EC58C /* TapMemoWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3A52433625D1894A004EC58C /* TapMemoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3A5BDBAC25CF8D0000A4AAD1 /* KeyboardToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5BDBAB25CF8D0000A4AAD1 /* KeyboardToolBar.swift */; };
 		3A5BDBB425CF913400A4AAD1 /* KeyboardToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5BDBB325CF913400A4AAD1 /* KeyboardToolBar.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3A52434425D1894E004EC58C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3A3683F125CE818800E15A23 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3A52433525D1894A004EC58C;
-			remoteInfo = TapMemoWidgetExtension;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		3A52434725D1894E004EC58C /* Embed App Extensions */ = {
@@ -58,7 +41,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				3A52434625D1894E004EC58C /* TapMemoWidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,13 +74,8 @@
 		3A5242D625D0C433004EC58C /* Memo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memo.xcdatamodel; sourceTree = "<group>"; };
 		3A52430125D0D215004EC58C /* CoreUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreUtil.swift; sourceTree = "<group>"; };
 		3A52430425D0D440004EC58C /* CoreMemo+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreMemo+Extensions.swift"; sourceTree = "<group>"; };
-		3A52433625D1894A004EC58C /* TapMemoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TapMemoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A52433725D1894A004EC58C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		3A52433925D1894A004EC58C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		3A52433C25D1894A004EC58C /* TapMemoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapMemoWidget.swift; sourceTree = "<group>"; };
-		3A52433E25D1894A004EC58C /* TapMemoWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TapMemoWidget.intentdefinition; sourceTree = "<group>"; };
-		3A52433F25D1894D004EC58C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3A52434125D1894D004EC58C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A5BDBAB25CF8D0000A4AAD1 /* KeyboardToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardToolBar.swift; sourceTree = "<group>"; };
 		3A5BDBB325CF913400A4AAD1 /* KeyboardToolBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyboardToolBar.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,15 +90,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3A52433325D1894A004EC58C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3A52433A25D1894A004EC58C /* SwiftUI.framework in Frameworks */,
-				3A52433825D1894A004EC58C /* WidgetKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -130,7 +98,6 @@
 			children = (
 				3A5242D525D0C433004EC58C /* Memo.xcdatamodeld */,
 				3A3683FB25CE818800E15A23 /* TapMemo for iOS */,
-				3A52433B25D1894A004EC58C /* TapMemoWidget */,
 				3A3683FA25CE818800E15A23 /* Products */,
 				3A5242CD25D044BB004EC58C /* Frameworks */,
 			);
@@ -140,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				3A3683F925CE818800E15A23 /* TapMemo for iOS.app */,
-				3A52433625D1894A004EC58C /* TapMemoWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,17 +184,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3A52433B25D1894A004EC58C /* TapMemoWidget */ = {
-			isa = PBXGroup;
-			children = (
-				3A52433C25D1894A004EC58C /* TapMemoWidget.swift */,
-				3A52433E25D1894A004EC58C /* TapMemoWidget.intentdefinition */,
-				3A52433F25D1894D004EC58C /* Assets.xcassets */,
-				3A52434125D1894D004EC58C /* Info.plist */,
-			);
-			path = TapMemoWidget;
-			sourceTree = "<group>";
-		};
 		3A5BDBAA25CF8CE000A4AAD1 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,29 +208,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				3A52434525D1894E004EC58C /* PBXTargetDependency */,
 			);
 			name = "TapMemo for iOS";
 			productName = "TapMemo for iOS";
 			productReference = 3A3683F925CE818800E15A23 /* TapMemo for iOS.app */;
 			productType = "com.apple.product-type.application";
-		};
-		3A52433525D1894A004EC58C /* TapMemoWidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3A52434A25D1894E004EC58C /* Build configuration list for PBXNativeTarget "TapMemoWidgetExtension" */;
-			buildPhases = (
-				3A52433225D1894A004EC58C /* Sources */,
-				3A52433325D1894A004EC58C /* Frameworks */,
-				3A52433425D1894A004EC58C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TapMemoWidgetExtension;
-			productName = TapMemoWidgetExtension;
-			productReference = 3A52433625D1894A004EC58C /* TapMemoWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -287,9 +224,6 @@
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					3A3683F825CE818800E15A23 = {
-						CreatedOnToolsVersion = 12.4;
-					};
-					3A52433525D1894A004EC58C = {
 						CreatedOnToolsVersion = 12.4;
 					};
 				};
@@ -308,7 +242,6 @@
 			projectRoot = "";
 			targets = (
 				3A3683F825CE818800E15A23 /* TapMemo for iOS */,
-				3A52433525D1894A004EC58C /* TapMemoWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -322,14 +255,6 @@
 				3A36840925CE818B00E15A23 /* LaunchScreen.storyboard in Resources */,
 				3A36840625CE818B00E15A23 /* Assets.xcassets in Resources */,
 				3A36840425CE818800E15A23 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3A52433425D1894A004EC58C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3A52434025D1894D004EC58C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +279,6 @@
 				3A36842F25CEA58800E15A23 /* Storage.swift in Sources */,
 				3A36843825CEC44E00E15A23 /* MemoTextView.swift in Sources */,
 				3A36841425CE84DC00E15A23 /* MemoTableViewController.swift in Sources */,
-				3A52434325D1894E004EC58C /* TapMemoWidget.intentdefinition in Sources */,
 				3A3683FD25CE818800E15A23 /* AppDelegate.swift in Sources */,
 				3A36842B25CE8DF500E15A23 /* RE.swift in Sources */,
 				3A5242D725D0C433004EC58C /* Memo.xcdatamodeld in Sources */,
@@ -363,24 +287,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3A52433225D1894A004EC58C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3A52434225D1894D004EC58C /* TapMemoWidget.intentdefinition in Sources */,
-				3A52433D25D1894A004EC58C /* TapMemoWidget.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3A52434525D1894E004EC58C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3A52433525D1894A004EC58C /* TapMemoWidgetExtension */;
-			targetProxy = 3A52434425D1894E004EC58C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3A36840225CE818800E15A23 /* Main.storyboard */ = {
@@ -560,48 +467,6 @@
 			};
 			name = Release;
 		};
-		3A52434825D1894E004EC58C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MEWHFZ92DY;
-				INFOPLIST_FILE = TapMemoWidget/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "hagemon.TapMemo-mobile.TapMemoWidget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		3A52434925D1894E004EC58C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MEWHFZ92DY;
-				INFOPLIST_FILE = TapMemoWidget/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "hagemon.TapMemo-mobile.TapMemoWidget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -619,15 +484,6 @@
 			buildConfigurations = (
 				3A36840E25CE818B00E15A23 /* Debug */,
 				3A36840F25CE818B00E15A23 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3A52434A25D1894E004EC58C /* Build configuration list for PBXNativeTarget "TapMemoWidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3A52434825D1894E004EC58C /* Debug */,
-				3A52434925D1894E004EC58C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
