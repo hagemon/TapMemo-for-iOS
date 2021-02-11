@@ -53,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let options = NSPersistentCloudKitContainerOptions(containerIdentifier: id)
         description.cloudKitContainerOptions = options
         description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         container.persistentStoreDescriptions = [description]
         container.loadPersistentStores(completionHandler: {
             (storeDescription, error) in

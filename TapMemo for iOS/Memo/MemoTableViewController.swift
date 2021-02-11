@@ -11,7 +11,7 @@ class MemoTableViewController: UITableViewController {
     
     @IBOutlet weak var editButton: UIBarButtonItem!
     
-    var memos: [CoreMemo] = CoreUtil.getCoreMemos()
+    var memos: [CoreMemo] = []
     
     var recentCount: Int {
         get {
@@ -24,6 +24,9 @@ class MemoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.memos = CoreUtil.getCoreMemos() {
+            self.tableView.reloadData()
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateMemos), name: .memosShouldUpdate, object: nil)
     }
     
@@ -107,8 +110,9 @@ class MemoTableViewController: UITableViewController {
     }
     
     @objc func updateMemos() {
-        self.memos = CoreUtil.getCoreMemos()
-        self.tableView.reloadData()
+        self.memos = CoreUtil.getCoreMemos() {
+            self.tableView.reloadData()
+        }
     }
     
 }

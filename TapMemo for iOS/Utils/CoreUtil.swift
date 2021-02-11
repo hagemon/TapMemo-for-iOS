@@ -53,7 +53,7 @@ final class CoreUtil: NSObject {
         }
     }
     
-    static func getCoreMemos() -> [CoreMemo] {
+    static func getCoreMemos(handler: ()->()={}) -> [CoreMemo] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CoreMemo")
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         request.returnsObjectsAsFaults = false
@@ -63,8 +63,8 @@ final class CoreUtil: NSObject {
             for data in result {
                print(data.value(forKey: "uuid") as! String, data.value(forKey: "date") as! String)
             }
+            handler()
             return result
-            
         } catch {
             print("Load Failed")
             return []
