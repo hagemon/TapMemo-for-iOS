@@ -13,13 +13,6 @@ final class Memo: NSObject, NSCoding {
     var date: String
     var content: String
     let uuid: String
-    var changed = false {
-        didSet {
-            if oldValue != self.changed {
-                
-            }
-        }
-    }
     
     init(title: String, date: Date, content: String) {
         self.title = title

@@ -13,8 +13,6 @@
 		3A36840625CE818B00E15A23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A36840525CE818B00E15A23 /* Assets.xcassets */; };
 		3A36840925CE818B00E15A23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A36840725CE818B00E15A23 /* LaunchScreen.storyboard */; };
 		3A36841425CE84DC00E15A23 /* MemoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36841325CE84DC00E15A23 /* MemoTableViewController.swift */; };
-		3A36841725CE84F100E15A23 /* MemoTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36841625CE84F100E15A23 /* MemoTableView.swift */; };
-		3A36841A25CE850000E15A23 /* MemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36841925CE850000E15A23 /* MemoViewModel.swift */; };
 		3A36841E25CE851800E15A23 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36841D25CE851800E15A23 /* Memo.swift */; };
 		3A36842325CE8D9F00E15A23 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36842225CE8D9F00E15A23 /* Date+Extensions.swift */; };
 		3A36842A25CE8DF500E15A23 /* MDParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36842725CE8DF400E15A23 /* MDParser.swift */; };
@@ -22,7 +20,6 @@
 		3A36842C25CE8DF500E15A23 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36842925CE8DF400E15A23 /* Enums.swift */; };
 		3A36842F25CEA58800E15A23 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36842E25CEA58800E15A23 /* Storage.swift */; };
 		3A36843425CEBE2200E15A23 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36843325CEBE2200E15A23 /* SettingsTableViewController.swift */; };
-		3A36843825CEC44E00E15A23 /* MemoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36843725CEC44E00E15A23 /* MemoTextView.swift */; };
 		3A36843B25CEC4B700E15A23 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36843A25CEC4B700E15A23 /* MemoViewController.swift */; };
 		3A36845625CF811B00E15A23 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36845525CF811B00E15A23 /* Notifications.swift */; };
 		3A5242CF25D044BB004EC58C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5242CE25D044BB004EC58C /* CloudKit.framework */; };
@@ -56,8 +53,6 @@
 		3A36840825CE818B00E15A23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A36840A25CE818B00E15A23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A36841325CE84DC00E15A23 /* MemoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTableViewController.swift; sourceTree = "<group>"; };
-		3A36841625CE84F100E15A23 /* MemoTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTableView.swift; sourceTree = "<group>"; };
-		3A36841925CE850000E15A23 /* MemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewModel.swift; sourceTree = "<group>"; };
 		3A36841D25CE851800E15A23 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		3A36842225CE8D9F00E15A23 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		3A36842725CE8DF400E15A23 /* MDParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDParser.swift; sourceTree = "<group>"; };
@@ -65,7 +60,6 @@
 		3A36842925CE8DF400E15A23 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		3A36842E25CEA58800E15A23 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		3A36843325CEBE2200E15A23 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		3A36843725CEC44E00E15A23 /* MemoTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTextView.swift; sourceTree = "<group>"; };
 		3A36843A25CEC4B700E15A23 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		3A36845525CF811B00E15A23 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		3A5242CA25D043DF004EC58C /* TapMemo for iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TapMemo for iOS.entitlements"; sourceTree = "<group>"; };
@@ -134,9 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				3A36841325CE84DC00E15A23 /* MemoTableViewController.swift */,
-				3A36841625CE84F100E15A23 /* MemoTableView.swift */,
-				3A36841925CE850000E15A23 /* MemoViewModel.swift */,
-				3A36843725CEC44E00E15A23 /* MemoTextView.swift */,
 				3A36843A25CEC4B700E15A23 /* MemoViewController.swift */,
 			);
 			path = Memo;
@@ -271,13 +262,10 @@
 				3A52430525D0D440004EC58C /* CoreMemo+Extensions.swift in Sources */,
 				3A36843B25CEC4B700E15A23 /* MemoViewController.swift in Sources */,
 				3A5BDBAC25CF8D0000A4AAD1 /* KeyboardToolBar.swift in Sources */,
-				3A36841A25CE850000E15A23 /* MemoViewModel.swift in Sources */,
-				3A36841725CE84F100E15A23 /* MemoTableView.swift in Sources */,
 				3A36842325CE8D9F00E15A23 /* Date+Extensions.swift in Sources */,
 				3A52430225D0D215004EC58C /* CoreUtil.swift in Sources */,
 				3A36842A25CE8DF500E15A23 /* MDParser.swift in Sources */,
 				3A36842F25CEA58800E15A23 /* Storage.swift in Sources */,
-				3A36843825CEC44E00E15A23 /* MemoTextView.swift in Sources */,
 				3A36841425CE84DC00E15A23 /* MemoTableViewController.swift in Sources */,
 				3A3683FD25CE818800E15A23 /* AppDelegate.swift in Sources */,
 				3A36842B25CE8DF500E15A23 /* RE.swift in Sources */,

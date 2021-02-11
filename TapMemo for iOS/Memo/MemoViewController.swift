@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import CoreData
 
 class MemoViewController: UIViewController, UITextViewDelegate {
 
-    @IBOutlet weak var textView: MemoTextView!
+    @IBOutlet weak var textView: UITextView!
     var isEdited = false
 //    var memo: CoreMemo = CoreUtil.createMemo(title: "Title", content: "# Title\n", date: Date.now())
     var memo: CoreMemo?
+    var token: NSPersistentHistoryToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,7 @@ class MemoViewController: UIViewController, UITextViewDelegate {
             self.navigationItem.title = "Title"
         }
         self.refresh()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleRemoteData(_:)), name: .NSPersistentStoreRemoteChange, object: CoreUtil.container.persistentStoreCoordinator)
         // Do any additional setup after loading the view.
     }
     
@@ -99,6 +102,40 @@ class MemoViewController: UIViewController, UITextViewDelegate {
             end = self.textView.endOfDocument
         }
         return self.textView.textRange(from: start!, to: end!)
+    }
+    
+    @objc func handleRemoteData(_ notification:Notification) {
+        guard let info = notification.userInfo,
+              let token = info["historyToken"] as? NSPersistentHistoryToken,
+              token != self.token
+        else {
+            return
+        }
+        let fetchHistoryRequest = NSPersistentHistoryChangeRequest.fetchHistory(after: self.token)
+        self.token = token
+        let context = CoreUtil.container.viewContext
+        guard
+            let historyResult = try? context.execute(fetchHistoryRequest)
+                as? NSPersistentHistoryResult,
+            let history = historyResult.result as? [NSPersistentHistoryTransaction]
+        else {
+            print("Could not convert history result to transactions.")
+            return
+        }
+        guard history.count > 0,
+              let trans = history.last
+        else {
+            return
+        }
+        CoreUtil.context.perform {
+            CoreUtil.context.mergeChanges(fromContextDidSave: trans.objectIDNotification())
+            DispatchQueue.main.async {
+                [unowned self] in
+                guard let memo = self.memo else {return}
+                self.textView.text = memo.content
+                self.refresh()
+            }
+        }
     }
     
     @objc func headerAction() {

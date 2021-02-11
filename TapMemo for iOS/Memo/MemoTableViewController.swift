@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MemoTableViewController: UITableViewController {
     
@@ -28,6 +29,7 @@ class MemoTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateMemos), name: .memosShouldUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleRemoteData(_:)), name: .NSPersistentStoreRemoteChange, object: CoreUtil.container.persistentStoreCoordinator)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +95,29 @@ class MemoTableViewController: UITableViewController {
         self.showMemoViewController(memo: memo)
         
     }
+    
+    // MARK: - Notifications
+    
+    @objc func handleRemoteData(_ notification: Notification) {
+        guard let info = notification.userInfo,
+              let token = info["historyToken"] as? NSPersistentHistoryToken,
+              token != CoreUtil.lastToken
+        else {
+            return
+        }
+        guard let trans = CoreUtil.getLatestTransaction(token: token) else {return}
+        CoreUtil.context.perform {
+            CoreUtil.context.mergeChanges(fromContextDidSave: trans.objectIDNotification())
+            DispatchQueue.main.async {
+                [unowned self] in
+                print("update table from remote")
+                self.memos = CoreUtil.getCoreMemos()
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    // MARK: - actions
     
     @IBAction func addAction(_ sender: Any) {
     }

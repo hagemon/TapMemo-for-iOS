@@ -9,8 +9,35 @@ import UIKit
 import CoreData
 
 final class CoreUtil: NSObject {
-    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    // MARK: - Core Data Context
+    static let container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    static let context = container.viewContext
+    static var lastToken: NSPersistentHistoryToken? = nil {
+        didSet{
+            guard let token = lastToken,
+                  let data = try? NSKeyedArchiver.archivedData(withRootObject: token, requiringSecureCoding: true)
+            else { return }
+            do {
+                try data.write(to: tokenFile)
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
+    static var tokenFile: URL = {
+        let url = NSPersistentContainer.defaultDirectoryURL().appendingPathComponent("TapMemo", isDirectory: true)
+        if !FileManager.default.fileExists(atPath: url.path) {
+            do {
+                try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+        }
+        return url.appendingPathComponent("token.data", isDirectory: false)
+    }()
+    
+    // MARK: - Memo Functions
     static func createMemo(title: String, content: String, date: Date) -> CoreMemo {
         let entity = NSEntityDescription.entity(forEntityName: "CoreMemo", in: self.context)
         let memo = NSManagedObject(entity: entity!, insertInto: self.context) as! CoreMemo
@@ -69,6 +96,26 @@ final class CoreUtil: NSObject {
             print("Load Failed")
             return []
         }
+    }
+    
+    static func getLatestTransaction(token: NSPersistentHistoryToken) -> NSPersistentHistoryTransaction? {
+        let fetchHistoryRequest = NSPersistentHistoryChangeRequest.fetchHistory(after: self.lastToken)
+        CoreUtil.lastToken = token
+        let context = CoreUtil.container.viewContext
+        guard
+            let historyResult = try? context.execute(fetchHistoryRequest)
+                as? NSPersistentHistoryResult,
+            let history = historyResult.result as? [NSPersistentHistoryTransaction]
+        else {
+            print("Could not convert history result to transactions.")
+            return nil
+        }
+        guard history.count > 0,
+              let trans = history.last
+        else {
+            return nil
+        }
+        return trans
     }
     
 }
