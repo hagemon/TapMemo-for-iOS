@@ -29,7 +29,10 @@ class MemoTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateMemos), name: .memosShouldUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleRemoteData(_:)), name: .NSPersistentStoreRemoteChange, object: CoreUtil.container.persistentStoreCoordinator)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.handleRemoteData(_:)),
+                                               name: .NSPersistentStoreRemoteChange,
+                                               object: CoreUtil.container.persistentStoreCoordinator)
     }
     
     override func viewWillAppear(_ animated: Bool) {

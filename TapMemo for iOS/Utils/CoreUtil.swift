@@ -48,20 +48,6 @@ final class CoreUtil: NSObject {
         return memo
     }
     
-    static func saveCoreMemo(memo: Memo) {
-        guard let entity = NSEntityDescription.entity(forEntityName: "CoreMemo", in: self.context) else {return}
-        let newMemo = NSManagedObject(entity: entity, insertInto: self.context)
-        newMemo.setValue(memo.uuid, forKey: "uuid")
-        newMemo.setValue(memo.title, forKey: "title")
-        newMemo.setValue(memo.content, forKey: "content")
-        newMemo.setValue(memo.date, forKey: "date")
-        do {
-            try self.context.save()
-        } catch {
-            print("\(memo.title) saved failed")
-        }
-    }
-    
     static func save() {
         do {
             try self.context.save()
