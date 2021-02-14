@@ -59,9 +59,6 @@ class MemoViewController: UIViewController, UITextViewDelegate {
             self.navigationItem.title = memo.title
         }
         let selectedRange = self.textView.selectedRange
-        for replaced in MDParser.autoOrder(content: self.textView.text) {
-            self.textView.text.replaceSubrange(replaced.range, with: replaced.string)
-        }
         let textStorage = self.textView.textStorage
         textStorage.setAttributedString(MDParser.renderAll(content: self.textView.text))
         self.textView.selectedRange = selectedRange

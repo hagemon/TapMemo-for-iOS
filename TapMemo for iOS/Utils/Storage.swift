@@ -19,7 +19,6 @@ final class Storage: NSObject {
             print(error)
             return
         }
-        CoreUtil.saveCoreMemo(memo: memo)
     }
     
     static func removeMemo(memo: Memo) {

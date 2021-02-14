@@ -7,11 +7,6 @@
 
 import UIKit
 
-struct Rendered {
-    let attributes: [[NSAttributedString.Key: Any]]
-    let attributedRanges: [NSRange]
-}
-
 struct Replaced {
     let string: String
     let range: Range<String.Index>
@@ -23,66 +18,50 @@ class MDParser: NSObject {
     static let orderRegex = "^[0-9]+\\."
     static let bulletRegex = "^-"
     static let orderListBlockRegex = "(?<=(^|\n))([0-9]+\\..*(\n)?)*(?<=(^|\n))([0-9]+\\..*)+"
+    static let bulletBlocksRegex = "(?<=(^|\n))-.*(\n)?"
+    static let headerBlocksRegex = "(?<=(^|\n))#{1,3}.*(\n)?"
     static let specielRegex = "(?<=(^|\n))(#{1,3}|[0-9]+\\.|-)"
-    static let paraRegex = "(?<=(^|\n)).*[\n]?"
     
     static func getTitle(content: String) -> String {
-        guard let title = RE.regularExpression(validateString: content, inRegex: "^#{1,3} +.*\n?").first else {return ""}
+        guard let title = RE.regularExpression(validateString: content, inRegex: "^#{1,3}.*\n?").first else {return ""}
         return RE.replace(validateString: title, withContent: "", inRegex: "^#{1,3} +")
     }
     
     static func renderAll(content: String) -> NSAttributedString {
         let result = NSMutableAttributedString(string: content, attributes: self.normalAttribute())
-        let para = RE.regularExpression(validateString: content, inRegex: self.paraRegex)
-        var start = 0
-        for s in para {
-            guard let range = Range(NSRange(location: 0, length: s.utf16.count), in: s)
-            else {continue}
-            let rendered = self.render(content: s, with: range)
-            for i in 0..<rendered.attributes.count {
-                let renderedRange = rendered.attributedRanges[i]
-                let range = NSRange(location: start+renderedRange.location, length: renderedRange.length)
-                result.addAttributes(rendered.attributes[i], range: range)
-            }
-            start += s.utf16.count
+        // render header
+        let headers = RE.regularExpressionRange(validateString: content, inRegex: self.headerBlocksRegex)
+        for parsed in headers {
+            let level = self.getHeaderLevel(header: parsed.content)
+            let attributes = self.headerAttribute(level: level)
+            result.addAttributes(attributes, range: parsed.range)
         }
+        // render ordered list
+        let orderedList = RE.regularExpressionRange(validateString: content, inRegex: self.orderListBlockRegex)
+        for parsed in orderedList {
+            let replaced = RE.replace(validateString: parsed.content, withContent: "", inRegex: "(?<=(^|\n))[0-9]+")
+            var splited = replaced.split(separator: "\n")
+            splited = splited.enumerated().map({(i, line) in "\(i+1)"+line})
+            let s = splited.joined(separator: "\n")
+            result.mutableString.replaceCharacters(in: parsed.range, with: s)
+            result.addAttributes(self.listAttribute(), range: parsed.range)
+        }
+        // render bullet list
+        let bulletList = RE.regularExpressionRange(validateString: content, inRegex: self.bulletBlocksRegex)
+        for parsed in bulletList {
+            result.addAttributes(self.listAttribute(), range: parsed.range)
+        }
+        //highlight special signs
+        for parsed in RE.regularExpressionRange(validateString: content, inRegex: self.specielRegex) {
+            result.addAttributes([
+                .foregroundColor: UIColor(named: "AccentColor")!
+            ], range: parsed.range)
+        }
+        
         return result
     }
-        
-    static func render(content: String, with range: Range<String.Index>) -> Rendered{
-        let para = String(content[range])
-        var attrs: [[NSAttributedString.Key: Any]] = []
-        var attrRanges: [NSRange] = []
-        // header
-        var attr:[NSAttributedString.Key: Any] = self.normalAttribute()
-        let headerMatch = RE.regularExpression(validateString: para, inRegex: headerRegex)
-        let level = headerMatch.isEmpty ? 0 : headerMatch[0].count
-        if level > 0 {
-            attr = self.headerAttribute(level: level)
-        }
-        else {
-            let orderedMatched = RE.regularExpression(validateString: para, inRegex: self.orderRegex)
-            let bulletMatched = RE.regularExpression(validateString: para, inRegex: self.bulletRegex)
-            if bulletMatched.count > 0 {
-                attr = self.listAttribute()
-            }
-            else if orderedMatched.count > 0{
-                attr = self.listAttribute()
-            }
-        }
-        attrs.append(attr)
-        attrRanges.append(NSRange(range, in: content))
-        
-        // style
-        for (_, styleRange) in RE.regularExpressionRange(validateString: content, inRegex: self.specielRegex){
-            attrs.append([
-                .foregroundColor: UIColor(named: "AccentColor")!
-            ])
-            attrRanges.append(styleRange)
-        }
-        
-        return Rendered(attributes: attrs, attributedRanges: attrRanges)
-    }
+    
+    // MARK: - Update Attributes
     
     static func updateHeader(s: String) -> String {
         if s == "\n" {return s+"# "}
@@ -104,6 +83,7 @@ class MDParser: NSObject {
         if order.count > 0 {
             return RE.replace(validateString: s, withContent: "", inRegex: self.orderRegex+"[ ]*")
         }
+        // This would be auto reordered, using `1.` works fine.
         return "1. "+s
     }
     
@@ -116,18 +96,27 @@ class MDParser: NSObject {
         return "- "+s
     }
     
+    // MARK: Util Functions
+    
     static func autoOrder(content: String) -> [Replaced] {
         var result:[Replaced] = []
-        for (block, range) in RE.regularExpressionRange(validateString: content, inRegex: self.orderListBlockRegex) {
-            let replaced = RE.replace(validateString: block, withContent: "", inRegex: "(?<=(^|\n))[0-9]+")
+        for parsed in RE.regularExpressionRange(validateString: content, inRegex: self.orderListBlockRegex) {
+            let replaced = RE.replace(validateString: parsed.content, withContent: "", inRegex: "(?<=(^|\n))[0-9]+")
             var splited = replaced.split(separator: "\n")
             splited = splited.enumerated().map({(i, line) in "\(i+1)"+line})
             let s = splited.joined(separator: "\n")
-            guard let subRange = Range(range, in: content) else {continue}
+            guard let subRange = Range(parsed.range, in: content) else {continue}
             result.append(Replaced(string: s, range: subRange))
         }
         return result
     }
+    
+    static func getHeaderLevel(header: String) -> Int {
+        guard let signs = RE.regularExpression(validateString: header, inRegex: "^#{1,3}").first else { return 0 }
+        return signs.count
+    }
+    
+    // MARK: - Attributes
     
     private static func headerAttribute(level: Int) -> [NSAttributedString.Key: Any] {
         let paraStyle = NSMutableParagraphStyle()
