@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,29 +14,53 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <items>
+                <barButtonItem style="plain" systemItem="flexibleSpace" id="voa-Ob-1BT"/>
                 <barButtonItem title="# H" id="YLc-nX-JMn">
                     <color key="tintColor" name="AccentColor"/>
                 </barButtonItem>
-                <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="WVq-5L-2cb"/>
+                <barButtonItem style="plain" systemItem="flexibleSpace" id="7t7-Er-oW7"/>
+                <barButtonItem image="poweron" catalog="system" id="ie3-qV-avD">
+                    <color key="tintColor" systemColor="systemGrayColor"/>
+                </barButtonItem>
+                <barButtonItem style="plain" systemItem="flexibleSpace" id="jy6-gd-UFR"/>
                 <barButtonItem title="1." id="O2Y-ly-DPd">
                     <color key="tintColor" name="AccentColor"/>
                 </barButtonItem>
-                <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="2PU-6S-gu1"/>
+                <barButtonItem style="plain" systemItem="flexibleSpace" id="xtU-Jo-dkD"/>
+                <barButtonItem image="poweron" catalog="system" id="Mve-MD-ExV">
+                    <color key="tintColor" systemColor="systemGrayColor"/>
+                </barButtonItem>
+                <barButtonItem style="plain" systemItem="flexibleSpace" id="WJV-6F-9OY"/>
                 <barButtonItem title="-" id="mwc-bi-yEm">
                     <color key="tintColor" name="AccentColor"/>
                 </barButtonItem>
+                <barButtonItem style="plain" systemItem="flexibleSpace" id="IOq-MU-dd4"/>
+                <barButtonItem image="poweron" catalog="system" id="sgI-EN-LZq">
+                    <color key="tintColor" systemColor="systemGrayColor"/>
+                </barButtonItem>
+                <barButtonItem style="plain" systemItem="flexibleSpace" id="8M9-T6-uR7"/>
+                <barButtonItem systemItem="done" id="Iob-5l-haB">
+                    <color key="tintColor" name="AccentColor"/>
+                </barButtonItem>
+                <barButtonItem style="plain" systemItem="flexibleSpace" id="IsK-7m-1LO"/>
             </items>
             <connections>
                 <outlet property="bulletButton" destination="mwc-bi-yEm" id="07N-PG-fuE"/>
+                <outlet property="doneButton" destination="Iob-5l-haB" id="tVy-q8-ubT"/>
                 <outlet property="headerButton" destination="YLc-nX-JMn" id="lVn-8h-xyp"/>
                 <outlet property="orderButton" destination="O2Y-ly-DPd" id="GCd-g1-rSm"/>
             </connections>
             <point key="canvasLocation" x="-212" y="-113"/>
         </toolbar>
+        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="g6u-PT-52f"/>
     </objects>
     <resources>
+        <image name="poweron" catalog="system" width="39" height="128"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

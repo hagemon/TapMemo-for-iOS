@@ -69,6 +69,7 @@ class MemoViewController: UIViewController, UITextViewDelegate {
         toolBar.headerButton.action = #selector(self.headerAction)
         toolBar.orderButton.action = #selector(self.orderAction)
         toolBar.bulletButton.action = #selector(self.bulletAction)
+        toolBar.doneButton.action = #selector(self.doneAction(_:))
         self.textView.inputAccessoryView = toolBar
     }
 
@@ -162,7 +163,7 @@ class MemoViewController: UIViewController, UITextViewDelegate {
         self.textView.replace(range, withText: MDParser.updateBullet(s: text))
     }
 
-    @IBAction func doneAction(_ sender: Any) {
+    @IBAction @objc func doneAction(_ sender: Any) {
         self.textView.endEditing(true)
     }
 }

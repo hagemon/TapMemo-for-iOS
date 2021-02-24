@@ -14,4 +14,7 @@ class KeyboardToolBar: UIToolbar {
     @IBOutlet weak var orderButton: UIBarButtonItem!
     
     @IBOutlet weak var bulletButton: UIBarButtonItem!
+    
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
 }

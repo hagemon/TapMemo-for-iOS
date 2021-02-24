@@ -98,19 +98,6 @@ class MDParser: NSObject {
     
     // MARK: Util Functions
     
-    static func autoOrder(content: String) -> [Replaced] {
-        var result:[Replaced] = []
-        for parsed in RE.regularExpressionRange(validateString: content, inRegex: self.orderListBlockRegex) {
-            let replaced = RE.replace(validateString: parsed.content, withContent: "", inRegex: "(?<=(^|\n))[0-9]+")
-            var splited = replaced.split(separator: "\n")
-            splited = splited.enumerated().map({(i, line) in "\(i+1)"+line})
-            let s = splited.joined(separator: "\n")
-            guard let subRange = Range(parsed.range, in: content) else {continue}
-            result.append(Replaced(string: s, range: subRange))
-        }
-        return result
-    }
-    
     static func getHeaderLevel(header: String) -> Int {
         guard let signs = RE.regularExpression(validateString: header, inRegex: "^#{1,3}").first else { return 0 }
         return signs.count
